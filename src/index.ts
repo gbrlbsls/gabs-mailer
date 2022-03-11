@@ -23,6 +23,7 @@ async function testConnection() {
 	}
 
 }
+
 async function doThings() {
 	const databaseConnection = await databaseService.getConnection();
 	const application = new Application(databaseConnection);
