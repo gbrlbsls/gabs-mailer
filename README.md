@@ -9,7 +9,8 @@
 **1.** Create a table on your database with any name you want(configure **config.json**), but with the following columns: 
 - id
 
-    Unique
+    unique
+    primary key
 
 - subject
 
