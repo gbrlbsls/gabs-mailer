@@ -14,18 +14,22 @@
 - subject
 
     varchar
+    not null default ""
 
 - body
 
     text
+    not null default ""
 
 - email_to
 
     varchar
+    not null default ""
 
 - emails_cc
 
     varchar or text, this will be a comma separated emails string
+    not null default ""
     ex: "mail1@mail.com,mail2@mail.com"
 
 - status
