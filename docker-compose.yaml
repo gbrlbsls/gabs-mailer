@@ -4,6 +4,7 @@ services:
   gabs_mailer:
     build: .
     container_name: gabs_mailer
+    network_mode: host
     restart: unless-stopped
     volumes:
       - ./config.json:/usr/app/config.json
