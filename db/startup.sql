@@ -1,3 +1,4 @@
+USE gabs_mailer;
 CREATE TABLE sent_emails (
 	id INT auto_increment NOT NULL,
 	subject varchar(256) DEFAULT '' NOT NULL,
@@ -6,12 +7,7 @@ CREATE TABLE sent_emails (
 	emails_cc TEXT NOT NULL,
 	status INT DEFAULT 0 NOT NULL,
 	CONSTRAINT sent_emails_PK PRIMARY KEY (id)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb4
-COLLATE=utf8mb4_0900_ai_ci
-COMMENT='Status:
-0 - To sent
-1 - Sending
-2 - Sent';
+);
 
+CREATE USER 'commonuser'@'%' IDENTIFIED BY 'gabsmailer!123';
+GRANT Insert ON gabs_mailer.sent_emails  TO 'commonuser'@'%';

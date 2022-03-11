@@ -5,25 +5,18 @@ services:
   gabs_mailer_db:
     container_name: gabs_mailer_db
     build: .
-    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=mysql_native_password --init-file=/usr/gabs_mailer/startup.sql
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: gabs_mailer
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: "9D2MyCHY9cXS7SKE"
     ports:
-      - 3336:3306
+      - 3306:3306
     volumes:
       - "./.mysql-data/_data:/var/lib/mysql"
-    networks: 
-      - gabs_mailer_network
-  gabs_mailer_db_adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-    networks: 
-      - gabs_mailer_network
+      - "./startup.sql:/usr/gabs_mailer/startup.sql"
 
 networks:
-  gabs_mailer_network:
-    driver: bridge
+  default:
+    external:
+      name: gabs_mailer_network
