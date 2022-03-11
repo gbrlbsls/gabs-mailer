@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  gabs_mailer:
+    build: .
+    container_name: gabs_mailer
+    restart: unless-stopped
+    volumes:
+      - ./config.json:/usr/app/config.json

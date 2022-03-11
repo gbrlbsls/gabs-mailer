@@ -1,0 +1,33 @@
+{
+	"mysql":{
+		"host"     : "127.0.0.1",
+		"port" : 3306,
+		"user"     : "root",
+		"password" : "root",
+		"database" : "dbname"
+	},
+	"email": {
+		"smtp": {
+			"host": "smtp-relay.gmail.com",
+			"port": 587,
+			"user": "mail@gmail.com",
+			"password" : "123"
+		}
+	},
+	"mailer": {
+		"timezone": "Brazil/East",
+		"interval": "*/59 * * * * *",
+		"database": 
+		{
+			"table": "emails_queue",
+			"columns": {
+				"id": "id",
+				"body": "body",
+				"subject": "subject",
+				"email_to": "email_to",
+				"emails_cc": "emails_cc",
+				"status": "status"
+			}
+		}
+	}
+}
