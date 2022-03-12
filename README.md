@@ -1,9 +1,10 @@
 # Gabs-Mailer
-    A simple service that runs chronologically and sends mails.
+A simple service that runs chronologically and sends mails.
 
 # Prerequisites 
-- MySQL (tested on 8)
-- Node (tested on 16.10)
+- MariaDB (tested on mariadb:10.2.41)
+- NodeJS (tested on 16.10)
+- An smtp capable email server (tested with gmail and hotmail)
 
 # How to use
 **1.** Create a table on your database with any name you want(configure **config.json**), but with the following columns: 
@@ -72,3 +73,6 @@ OR
     docker logs -f gabs_mailer
 
 **4.** Test adding some email to the created table setting the status to 0
+
+    INSERT INTO gabs_mailer.sent_emails (subject, body, email_to, emails_cc, status) 
+    VALUES('Some awesome subject', 'An email <b>bold</b> body', 'somemail@address.com', 'somemailcc@address.com,maybe@morethanone.com', 0);
