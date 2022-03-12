@@ -47,11 +47,10 @@ async function doThings() {
 		return;
 	}
 
-	console.info(`${emailsToSendResponse.data?.length} emails encontrados.`);
+	console.info(`${emailsToSend.length} emails encontrados.`);
 
 	console.info(`Enviando emails`);
 	const sendEmailsAndUpdateStatusResponse = await application.sendEmailsAndUpdateStatus(emailsToSend!);
-
 	if (!sendEmailsAndUpdateStatusResponse.ok) {
 		console.error(sendEmailsAndUpdateStatusResponse.message);
 		console.info("}");
@@ -72,7 +71,7 @@ async function doThings() {
 		successfullEmailsSentCount += 1;
 	}
 
-	console.info(`${successfullEmailsSentCount} de ${emailsSent.size} emails enviados`);
+	console.info(`${successfullEmailsSentCount} de ${emailsToSend.length} emails enviado(s)`);
 	console.warn(`Os seguinte emails não foram enviados(id banco de dados): [${failedEmailsSent.join(", ")}]`);
 	console.info("}");
 }

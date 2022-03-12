@@ -1,25 +1,25 @@
 {
-	"mysql":{
-		"host"     : "127.0.0.1",
+	"database":{
+		"host"     : "localhost",
 		"port" : 3306,
 		"user"     : "root",
-		"password" : "root",
-		"database" : "dbname"
+		"password" : "9D2MyCHY9cXS7SKE",
+		"database" : "gabs_mailer"
 	},
 	"email": {
 		"smtp": {
-			"host": "smtp-relay.gmail.com",
+			"host": "smtp.office365.com",
 			"port": 587,
-			"user": "mail@gmail.com",
-			"password" : "123"
+			"user": "someemail@outlook.com",
+			"password" : "somepassword"
 		}
 	},
 	"mailer": {
 		"timezone": "Brazil/East",
-		"interval": "*/59 * * * * *",
+		"interval": "*/3 * * * * *",
 		"database": 
 		{
-			"table": "emails_queue",
+			"table": "sent_emails",
 			"columns": {
 				"id": "id",
 				"body": "body",

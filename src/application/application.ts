@@ -1,4 +1,5 @@
-import { PoolConnection } from "mysql2/promise";
+
+import { PoolConnection } from "mariadb";
 import { EmailStatus } from "../models/email-status.model";
 import { EmailToSend } from "../models/email-to-send.model";
 import { MailerResponse } from "../models/mailer-response.model";

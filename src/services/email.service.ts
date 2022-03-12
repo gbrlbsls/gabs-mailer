@@ -1,7 +1,6 @@
 import appConfig from "../../config.json";
 import nodemailer, {Transporter} from 'nodemailer';
 import Mail from "nodemailer/lib/mailer";
-import { PoolConnection } from "mysql2/promise";
 
 export class EmailService {
 
@@ -15,7 +14,6 @@ export class EmailService {
 				pass: appConfig.email.smtp.password,
 			},
 		});
-
 		return transporter;
 	}
 
@@ -26,8 +24,9 @@ export class EmailService {
 		else
 			_transporter = transporter;
 		
-		let error, info = await _transporter.sendMail(mailPayload);
-		
-		return info.rejected.length == 0;
+		console.info("mail send response");
+		const info = await _transporter.sendMail(mailPayload);
+
+		return info?.rejected.length == 0 || false;
 	}
 }

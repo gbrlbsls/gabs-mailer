@@ -1,7 +1,10 @@
 {
   "name": "gabs-mailer",
   "description": "A nodejs cron smtp mailer service",
-  "author": {"name": "Gabriel Bezerra Sales", "email": "gabrielbsales@gmail.com"},
+  "author": {
+    "name": "Gabriel Bezerra Sales",
+    "email": "gabrielbsales@gmail.com"
+  },
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
@@ -11,7 +14,7 @@
     "build": "tsc src/index.ts"
   },
   "dependencies": {
-    "mysql2": "^2.3.3",
+    "mariadb": "^3.0.0",
     "node-cron": "^3.0.0",
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",

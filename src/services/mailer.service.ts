@@ -1,10 +1,10 @@
 import { EmailStatus } from "../models/email-status.model";
 import { EmailToSend } from "../models/email-to-send.model";
 import appConfig from "../../config.json";
-import { PoolConnection } from "mysql2/promise";
 import { EmailService } from "./email.service";
 import { MailerDatabaseService } from "./mailer-database.service";
 import { databaseService } from "./database.service";
+import { PoolConnection } from "mariadb";
 
 export class MailerService {
 
@@ -22,13 +22,13 @@ export class MailerService {
 		const results: Map<number, EmailStatus> = new Map<number, EmailStatus>();
 
 		const transporter = this.emailService.getTransporter();
+		
 		for (let email of emailsToSend) {
 			const emailStatus = await this.mailerDatabaseService.getEmailStatus(email.id);
-			if (emailStatus == null || emailStatus > 0)
+			if (emailStatus === null || emailStatus > 0)
 				continue;
 
 			await this.mailerDatabaseService.markEmailAs(email.id, EmailStatus.SENTING);
-
 			let nextStatus = EmailStatus.SENT;
 			try {
 				const sent = await this.emailService.sendEmail({
@@ -38,7 +38,6 @@ export class MailerService {
 					to: email.email_to ?? "",
 					cc: email.emails_cc ?? ""
 				}, transporter);
-
 				if (!sent)
 					throw new Error("Email não enviado");
 			} catch (e) {

@@ -1,24 +1,20 @@
 import appConfig from '../../config.json';
-import mysql from "mysql2";
-import { PoolConnection } from "mysql2/promise";
+import mariadb, { PoolConnection } from "mariadb";
 
 class DatabaseService {
 
-	private pool: mysql.Pool;
+	private pool: mariadb.Pool;
 	constructor() {
-		this.pool = mysql.createPool({
-			...appConfig.mysql,
-
-			insecureAuth: true,
-			waitForConnections: true,
+		this.pool = mariadb.createPool({
+			...appConfig.database,
 			connectionLimit: 10,
-			queueLimit: 0
 		});
 
 	}
 
 	async getConnection() : Promise<PoolConnection> {
-		return await this.pool.promise().getConnection();
+		
+		return await this.pool.getConnection();
 	}
 }
 
