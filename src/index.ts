@@ -6,12 +6,12 @@ import { databaseService } from "./services/database.service";
 import { MailerDatabaseService } from "./services/mailer-database.service";
 
 testConnection().then(() => {
-	console.info("Programa rodando!");
+	console.info("Program started!");
 	cron.schedule(appConfig.mailer.interval, doThings, {timezone: appConfig.mailer.timezone});
 });
 
 async function testConnection() {
-	console.info("Conectando ao banco de dados...");
+	console.info("Connecting to database...");
 	const databaseConnection = await databaseService.getConnection();
 	const mailerDatabaseService = new MailerDatabaseService(databaseConnection);
 
@@ -28,7 +28,7 @@ async function doThings() {
 	const databaseConnection = await databaseService.getConnection();
 	const application = new Application(databaseConnection);
 
-	console.info("Procurando emails para enviar {");
+	console.info("Fetching mails to send {");
 	const emailsToSendResponse = await application.getEmailsToSend();
 
 	if (!emailsToSendResponse.ok) {
@@ -41,15 +41,20 @@ async function doThings() {
 	const emailsToSend = emailsToSendResponse.data;
 
 	if (emailsToSend === undefined || emailsToSend.length < 1) {
-		console.info("Nenhum email encontrado.");
+		console.info("No mail found.");
 		console.info("}");
 		databaseConnection.release();
 		return;
 	}
 
-	console.info(`${emailsToSend.length} emails encontrados.`);
+	console.info(`${emailsToSend.length} mails found.`);
 
-	console.info(`Enviando emails`);
+	if (emailsToSend.length < 1) {
+		databaseConnection.release();
+		return;
+	}
+
+	console.info(`Sending mails`);
 	const sendEmailsAndUpdateStatusResponse = await application.sendEmailsAndUpdateStatus(emailsToSend!);
 	if (!sendEmailsAndUpdateStatusResponse.ok) {
 		console.error(sendEmailsAndUpdateStatusResponse.message);
@@ -71,7 +76,10 @@ async function doThings() {
 		successfullEmailsSentCount += 1;
 	}
 
-	console.info(`${successfullEmailsSentCount} de ${emailsToSend.length} emails enviado(s)`);
-	console.warn(`Os seguintes emails não foram enviados(id banco de dados): [${failedEmailsSent.join(", ")}]`);
+	console.info(`${successfullEmailsSentCount} of ${emailsToSend.length} mails sent`);
+
+	if (failedEmailsSent.length > 0)
+		console.warn(`Failed to send the followings mails (ids): [${failedEmailsSent.join(", ")}]`);
+	
 	console.info("}");
 }
