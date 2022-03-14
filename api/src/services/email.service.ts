@@ -31,8 +31,8 @@ export class EmailService {
 		if (to == "" || !validateEmail(to))
 			throw new AppError(`Invalid 'to': "${to}"`)
 		
-		const ccs = cc.split(",");
-		if (ccs.length > 0) {
+		if (cc != "") {
+			const ccs = cc.split(",");
 			for (let email of ccs) {
 				if (!validateEmail(email))
 					throw new AppError(`Invalid email in 'cc': ${email}`);
