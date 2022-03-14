@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  gabs_mailer_api:
+    build: .
+    container_name: gabs_mailer_api
+    restart: unless-stopped
+    volumes:
+      - ./config.json:/usr/share/nginx/config.json
+    ports:
+      - 80:3030
+networks:
+  default:
+    external:
+      name: gabs_mailer_network

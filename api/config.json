@@ -1,0 +1,26 @@
+{
+	"app": {
+		"port": 3030,
+		"master_token": "SOMEVERYHARDHARDLYGUESSABLESTRING"
+	},
+	"database":{
+		"host"     : "gabs_mailer_db",
+		"port" : 3306,
+		"user"     : "root",
+		"password" : "SOMEVERYHARDPASSWORD",
+		"database" : "gabs_mailer"
+	},
+	"mailer": {
+		"database": {
+			"table": "sent_emails",
+			"columns": {
+				"id": "id",
+				"body": "body",
+				"subject": "subject",
+				"email_to": "email_to",
+				"emails_cc": "emails_cc",
+				"status": "status"
+			}
+		}
+	}
+}
