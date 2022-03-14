@@ -6,7 +6,7 @@ services:
     container_name: gabs_mailer
     restart: unless-stopped
     volumes:
-      - ./config.json:/usr/app/config.json
+      - ./config.json:/usr/app/build/config.json
 networks:
   default:
     external:
