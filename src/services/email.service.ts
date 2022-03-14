@@ -24,7 +24,6 @@ export class EmailService {
 		else
 			_transporter = transporter;
 		
-		console.info("mail send response");
 		const info = await _transporter.sendMail(mailPayload);
 
 		return info?.rejected.length == 0 || false;

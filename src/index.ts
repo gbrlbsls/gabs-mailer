@@ -72,6 +72,6 @@ async function doThings() {
 	}
 
 	console.info(`${successfullEmailsSentCount} de ${emailsToSend.length} emails enviado(s)`);
-	console.warn(`Os seguinte emails não foram enviados(id banco de dados): [${failedEmailsSent.join(", ")}]`);
+	console.warn(`Os seguintes emails não foram enviados(id banco de dados): [${failedEmailsSent.join(", ")}]`);
 	console.info("}");
 }
