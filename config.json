@@ -1,22 +1,22 @@
 {
 	"database":{
-		"host"     : "localhost",
+		"host"     : "gabs_mailer_db",
 		"port" : 3306,
 		"user"     : "root",
-		"password" : "9D2MyCHY9cXS7SKE",
+		"password" : "SOMEVERYHARDPASSWORD",
 		"database" : "gabs_mailer"
 	},
 	"email": {
 		"smtp": {
 			"host": "smtp.office365.com",
 			"port": 587,
-			"user": "someemail@outlook.com",
+			"user": "someaccount@someprovider.com",
 			"password" : "somepassword"
 		}
 	},
 	"mailer": {
 		"timezone": "Brazil/East",
-		"interval": "*/3 * * * * *",
+		"interval": "*/10 * * * * *",
 		"database": 
 		{
 			"table": "sent_emails",
