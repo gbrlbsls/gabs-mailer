@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: gabs_mailer
-      MYSQL_ROOT_PASSWORD: "9D2MyCHY9cXS7SKE"
+      MYSQL_ROOT_PASSWORD: "SOMEVERYHARDPASSWORD"
     ports:
       - 3306:3306
     volumes:
